@@ -14,6 +14,11 @@ func main() {
 	for sum < 1000 {
 		sum += sum
 		fmt.Println(sum)
+
+		if sum > 500 {
+			// return
+			break
+		}
 	}
 	fmt.Println(sum)
 }
