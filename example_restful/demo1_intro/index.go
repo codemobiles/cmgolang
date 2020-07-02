@@ -28,13 +28,14 @@ func Post(c *gin.Context) {
 }
 
 func PutPathParameter(c *gin.Context) {
-	user := c.Param("user")
-	c.JSON(http.StatusOK, gin.H{"message": user})
+	username := c.Param("username")
+	password := c.Param("password")
+	c.JSON(http.StatusOK, gin.H{"username": username, "password": password})
 }
 
 func DeleteQuery(c *gin.Context) {
-	user := c.Query("user")
-	c.JSON(http.StatusOK, gin.H{"message": user})
+	username := c.Query("username")
+	c.JSON(http.StatusOK, gin.H{"username": username})
 }
 
 func main() {
@@ -43,6 +44,8 @@ func main() {
 	r.GET("/", GetHelloWorld)
 	r.GET("/username", GetUsername)
 	r.POST("/", Post)
+	r.PUT("/user/:username/:password", PutPathParameter)
+	r.DELETE("/username", DeleteQuery)
 	// Run the server
 	r.Run()
 }
