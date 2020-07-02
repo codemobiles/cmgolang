@@ -15,6 +15,12 @@ func GetHelloWorld(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Hello World"})
 }
 
+func GetUsername(c *gin.Context) {
+	username := c.Query("username")
+	password := c.Query("password")
+	c.JSON(http.StatusOK, gin.H{"username": username, "password": password})
+}
+
 func Post(c *gin.Context) {
 	var u User
 	c.BindJSON(&u)
@@ -35,6 +41,7 @@ func main() {
 	r := gin.Default()
 
 	r.GET("/", GetHelloWorld)
+	r.GET("/username", GetUsername)
 	r.POST("/", Post)
 	// Run the server
 	r.Run()
